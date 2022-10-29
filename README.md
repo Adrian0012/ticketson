@@ -1,6 +1,6 @@
 # ticketson
-development => local dev env
+development => local
 
-main => QA env
+main => QA
 
-master => PROD env
+master => PROD
