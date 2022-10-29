@@ -1,6 +1,6 @@
 # ticketson
 development => local
 
-main => QA
+qa => QA
 
-master => PROD
+main => PROD
