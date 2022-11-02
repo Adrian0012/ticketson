@@ -32,7 +32,8 @@ class _NavbarState extends State<Navbar> {
           backgroundColor: Colors.blue,
           selectedItemColor: Colors.white,
           items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.wallet), label: 'Wallets'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.notifications), label: 'Notifications'),
             BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
             BottomNavigationBarItem(
                 icon: Icon(Icons.settings), label: 'Account')
