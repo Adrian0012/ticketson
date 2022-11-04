@@ -2,6 +2,7 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:ticketson/config/urls.dart';
 import 'package:ticketson/modules/dashboard/location.dart';
+import 'package:ticketson/modules/ticket/location.dart';
 
 class AppRouter {
   static final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
@@ -13,6 +14,7 @@ class AppRouter {
     locationBuilder: BeamerLocationBuilder(
       beamLocations: [
         DashboardLocation(),
+        TicketLocation(),
       ],
     ),
     // guards: [

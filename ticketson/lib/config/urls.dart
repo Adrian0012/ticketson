@@ -7,4 +7,5 @@ class Routes {
   static const resetPassword = '/resetPassword';
   // APP ROUTES
   static const dashboard = '/dashboard';
+  static const tickets = '/wallet/tickets';
 }

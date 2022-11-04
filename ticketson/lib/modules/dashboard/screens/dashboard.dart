@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,32 +26,41 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.person),
-            iconSize: 30.0,
-            color: Colors.white,
-            onPressed: () {},
-          ),
-          title: const Text('Hello - insert user'),
-          elevation: 0.0,
-          backgroundColor: Palette.primaryColor,
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/2.jpg"),
+          fit: BoxFit.cover,
         ),
-        body: _buildWallets(),
-        bottomNavigationBar: const Navbar(selectedIndex: 1),
-        floatingActionButtonLocation:
-            FloatingActionButtonLocation.miniCenterDocked,
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: FloatingActionButton(
-            backgroundColor: Colors.blue,
-            child: const Icon(Icons.add),
-            onPressed: () {
-              Beamer.of(context).beamToNamed(Routes.dashboard);
-            },
+      ),
+      child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            leading: IconButton(
+              icon: const Icon(Icons.person),
+              iconSize: 30.0,
+              color: Colors.white,
+              onPressed: () {},
+            ),
+            title: const Text('Hello - insert user'),
+            elevation: 0.0,
+            backgroundColor: Palette.primaryColor,
           ),
-        ));
+          body: _buildWallets(),
+          bottomNavigationBar: const Navbar(selectedIndex: 1),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.miniCenterDocked,
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FloatingActionButton(
+              backgroundColor: Colors.blue,
+              child: const Icon(Icons.add),
+              onPressed: () {
+                Beamer.of(context).beamToNamed(Routes.dashboard);
+              },
+            ),
+          )),
+    );
   }
 
   Widget _buildWallets() {
@@ -90,77 +97,76 @@ class _DashboardScreenState extends State<DashboardScreen> {
 }
 
 Widget _buildWalletItems(BuildContext context, List<Wallet> model) {
-  // set the listview builder as the container child
   return Column(
     children: <Widget>[
       Expanded(
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16.0),
-            gradient: const LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              stops: [
-                0.1,
-                0.4,
-                0.6,
-                0.9,
-              ],
-              colors: [
-                Colors.yellow,
-                Colors.red,
-                Colors.indigo,
-                Colors.teal,
-              ],
-            ),
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 16,
-                spreadRadius: 16,
-                color: Colors.black.withOpacity(0.1),
-              ),
-            ],
-          ),
-          child: ClipRRect(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 20.0,
-                sigmaY: 20.0,
-              ),
-              child: ListView.builder(
-                  itemCount: model.length,
-                  itemBuilder: (BuildContext content, int index) {
-                    final Wallet wallett = model[index];
-                    return const Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: test(),
-                    );
-                  }),
-            ),
-          ),
-        ),
-      )
+        child: ListView.builder(
+            itemCount: model.length,
+            itemBuilder: (BuildContext content, int index) {
+              final Wallet wallet = model[index];
+              return Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: WalletItem(wallet: wallet),
+              );
+            }),
+      ),
     ],
   );
 }
 
-class test extends StatelessWidget {
-  const test({
+class WalletItem extends StatefulWidget {
+  const WalletItem({
     Key? key,
+    required this.wallet,
   }) : super(key: key);
+  final Wallet wallet;
 
   @override
+  State<WalletItem> createState() => _WalletItemState();
+}
+
+class _WalletItemState extends State<WalletItem> {
+  @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: (() {
+        Beamer.of(context)
+            .beamToNamed(Routes.tickets, data: {'wallet': widget.wallet});
+      }),
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            stops: [
+              0.1,
+              0.4,
+              0.6,
+              0.9,
+            ],
+            colors: [
+              Colors.yellow,
+              Colors.red,
+              Colors.indigo,
+              Colors.teal,
+            ],
+          ),
+          color: Colors.white.withOpacity(0.4),
+          borderRadius: BorderRadius.circular(16.0),
+          border: Border.all(
+            width: 1.5,
+            color: Colors.white.withOpacity(0.2),
+          ),
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 16,
+              spreadRadius: 16,
+              color: Colors.black.withOpacity(0.1),
+            ),
+          ],
+        ),
         width: 360,
         height: 200,
-        decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.2),
-            borderRadius: BorderRadius.circular(16.0),
-            border: Border.all(
-              width: 1.5,
-              color: Colors.white.withOpacity(0.2),
-            )),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -195,6 +201,8 @@ class test extends StatelessWidget {
               )
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
