@@ -1,5 +1,6 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:ticketson/config/themes/palette.dart';
 import 'package:ticketson/config/urls.dart';
 
 class Navbar extends StatefulWidget {
@@ -29,14 +30,25 @@ class _NavbarState extends State<Navbar> {
         ),
         child: BottomNavigationBar(
           currentIndex: widget.selectedIndex,
-          backgroundColor: Colors.blue,
-          selectedItemColor: Colors.white,
+          backgroundColor: Palette.primaryColor,
+          selectedItemColor: Colors.red,
+          unselectedItemColor: Palette.secondaryColor,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-                icon: Icon(Icons.notifications), label: 'Notifications'),
+                icon: Icon(
+                  size: 25.0,
+                  Icons.notifications,
+                  color: Palette.secondaryColor,
+                ),
+                label: 'Notifications'),
             BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
             BottomNavigationBarItem(
-                icon: Icon(Icons.settings), label: 'Account')
+                icon: Icon(
+                  size: 25.0,
+                  Icons.settings,
+                  color: Palette.secondaryColor,
+                ),
+                label: 'Account')
           ],
           onTap: (index) {
             if (index == 0) {

@@ -43,6 +43,7 @@ flutter:
   assets:
       - assets/
       - assets/wallets.json
+      - assets/tickets.json
       - assets/images/
   fonts:
     - family: OpenSans

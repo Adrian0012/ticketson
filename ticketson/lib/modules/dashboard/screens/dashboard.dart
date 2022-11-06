@@ -27,22 +27,29 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/2.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
+      // decoration: const BoxDecoration(
+      //   image: DecorationImage(
+      //     image: AssetImage("assets/images/7.jpg"),
+      //     fit: BoxFit.cover,
+      //   ),
+      // ),
       child: Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Palette.accentColor,
           appBar: AppBar(
             leading: IconButton(
-              icon: const Icon(Icons.person),
-              iconSize: 30.0,
-              color: Colors.white,
+              icon: const Icon(
+                Icons.person,
+              ),
+              iconSize: 25.0,
+              color: Palette.secondaryColor,
               onPressed: () {},
             ),
-            title: const Text('Hello - insert user'),
+            title: const Text(
+              'adrian@code.je',
+              style: TextStyle(
+                color: Palette.secondaryColor,
+              ),
+            ),
             elevation: 0.0,
             backgroundColor: Palette.primaryColor,
           ),
@@ -53,8 +60,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
           floatingActionButton: Padding(
             padding: const EdgeInsets.all(8.0),
             child: FloatingActionButton(
-              backgroundColor: Colors.blue,
-              child: const Icon(Icons.add),
+              backgroundColor: Palette.secondaryColor,
+              child: const Icon(
+                Icons.add,
+                color: Palette.primaryColor,
+                size: 25.0,
+              ),
               onPressed: () {
                 Beamer.of(context).beamToNamed(Routes.dashboard);
               },
@@ -141,14 +152,14 @@ class _WalletItemState extends State<WalletItem> {
             stops: [
               0.1,
               0.4,
-              0.6,
-              0.9,
+              0.7,
+              // 0.9,
             ],
             colors: [
-              Colors.yellow,
-              Colors.red,
-              Colors.indigo,
-              Colors.teal,
+              Palette.cardGradient3,
+              Palette.cardGradient1,
+              Palette.cardGradient2,
+              // Colors.teal,
             ],
           ),
           color: Colors.white.withOpacity(0.4),
@@ -174,31 +185,32 @@ class _WalletItemState extends State<WalletItem> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Card',
-                      style: TextStyle(color: Colors.white.withOpacity(0.75))),
-                  Icon(
-                    Icons.credit_card_sharp,
-                    color: Colors.white.withOpacity(0.75),
-                  )
+                  Text(
+                    widget.wallet.name,
+                    style: const TextStyle(
+                      color: Palette.primaryColor,
+                    ),
+                  ),
                 ],
               ),
               const Spacer(),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('TL Templates',
-                      style: TextStyle(color: Colors.white.withOpacity(0.75))),
-                  Text('07/25',
-                      style: TextStyle(color: Colors.white.withOpacity(0.75))),
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: const [
+                  Text(
+                    '1',
+                    style: TextStyle(
+                      color: Palette.primaryColor,
+                    ),
+                  ),
+                  Padding(padding: EdgeInsets.all(2.0)),
+                  Icon(
+                    Icons.airplane_ticket,
+                    size: 25.0,
+                    color: Palette.primaryColor,
+                  )
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('5555 5555 5555 4444',
-                      style: TextStyle(color: Colors.white.withOpacity(0.75))),
-                ],
-              )
             ],
           ),
         ),
