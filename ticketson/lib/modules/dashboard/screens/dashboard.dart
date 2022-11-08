@@ -7,6 +7,7 @@ import 'package:ticketson/config/urls.dart';
 import 'package:ticketson/modules/wallet/bloc/wallet_bloc.dart';
 import 'package:ticketson/modules/wallet/models/wallet.dart';
 import 'package:ticketson/widgets/bottom_navbar.dart';
+import 'package:ticketson/widgets/loading.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -67,7 +68,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 size: 25.0,
               ),
               onPressed: () {
-                Beamer.of(context).beamToNamed(Routes.dashboard);
+                Beamer.of(context).beamToNamed(Routes.createWalletForm);
               },
             ),
           )),
@@ -90,11 +91,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
         child: BlocBuilder<WalletBloc, WalletState>(
           builder: (context, state) {
             if (state is WalletsInitial) {
-              return LoadingAnimationWidget.beat(
-                  color: Palette.primaryColor, size: 10.0);
+              return const Loading();
             } else if (state is WalletsLoading) {
-              return LoadingAnimationWidget.beat(
-                  color: Palette.primaryColor, size: 10.0);
+              return const Loading();
             } else if (state is WalletsLoaded) {
               return _buildWalletItems(context, state.wallets);
             } else {

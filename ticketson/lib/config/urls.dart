@@ -8,4 +8,6 @@ class Routes {
   // APP ROUTES
   static const dashboard = '/dashboard';
   static const tickets = '/wallet/tickets';
+  // FORMS
+  static const createWalletForm = '/createWallet';
 }

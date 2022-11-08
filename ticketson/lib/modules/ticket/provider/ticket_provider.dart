@@ -38,6 +38,7 @@ class TicketProvider {
     Map<String, dynamic> result = json.decode(response);
     final List<Ticket> data = List<Ticket>.from(
         result['data'].map((e) => Ticket.fromJson(e)).toList());
+    await Future.delayed(const Duration(seconds: 2));
     return data;
   }
 }

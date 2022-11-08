@@ -8,6 +8,7 @@ import 'package:ticketson/modules/ticket/bloc/ticket_bloc.dart';
 import 'package:ticketson/modules/ticket/models/ticket.dart';
 import 'package:ticketson/modules/wallet/models/wallet.dart';
 import 'package:ticketson/widgets/bottom_navbar.dart';
+import 'package:ticketson/widgets/loading.dart';
 
 class TicketScreen extends StatefulWidget {
   const TicketScreen({super.key, required this.wallet});
@@ -34,12 +35,14 @@ class _TicketScreenState extends State<TicketScreen> {
         backgroundColor: Palette.accentColor,
         appBar: AppBar(
           leading: IconButton(
-            icon: const Icon(Icons.person),
+            icon: const Icon(Icons.arrow_back),
             iconSize: 30.0,
             color: Colors.white,
-            onPressed: () {},
+            onPressed: () {
+              Beamer.of(context).beamBack();
+            },
           ),
-          title: const Text('adrian@code.je'),
+          title: Text('${widget.wallet.name} - Tickets'),
           elevation: 0.0,
           backgroundColor: Palette.primaryColor,
         ),
@@ -75,11 +78,9 @@ class _TicketScreenState extends State<TicketScreen> {
         child: BlocBuilder<TicketBloc, TicketState>(
           builder: (context, state) {
             if (state is TicketInitial) {
-              return LoadingAnimationWidget.beat(
-                  color: Palette.primaryColor, size: 10.0);
+              return const Loading();
             } else if (state is TicketLoading) {
-              return LoadingAnimationWidget.beat(
-                  color: Palette.primaryColor, size: 10.0);
+              return const Loading();
             } else if (state is TicketLoaded) {
               return _buildTicketItems(context, state.tickets);
             } else {

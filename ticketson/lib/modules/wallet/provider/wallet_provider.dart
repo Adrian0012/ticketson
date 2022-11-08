@@ -40,6 +40,7 @@ class WalletProvider {
     Map<String, dynamic> result = json.decode(response);
     final List<Wallet> data = List<Wallet>.from(
         result['data'].map((e) => Wallet.fromJson(e)).toList());
+    await Future.delayed(const Duration(seconds: 2));
     return data;
   }
 }

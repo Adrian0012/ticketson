@@ -41,7 +41,12 @@ class _NavbarState extends State<Navbar> {
                   color: Palette.secondaryColor,
                 ),
                 label: 'Notifications'),
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home,
+                  color: Colors.transparent,
+                ),
+                label: ''),
             BottomNavigationBarItem(
                 icon: Icon(
                   size: 25.0,
