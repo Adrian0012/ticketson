@@ -1,4 +1,6 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:ticketson/config/themes/palette.dart';
 
 class CreateWalletForm extends StatefulWidget {
   const CreateWalletForm({super.key});
@@ -14,7 +16,8 @@ class CreateWalletForm extends StatefulWidget {
 class CreateWalletFormState extends State<CreateWalletForm> {
   late FocusNode myFocusNode;
   final TextEditingController _walletNameController = TextEditingController();
-  final TextEditingController _controller2 = TextEditingController();
+  String? selectedValue;
+  final List<String> items = ['1', '2', '3', '4'];
 
   @override
   void initState() {
@@ -34,7 +37,6 @@ class CreateWalletFormState extends State<CreateWalletForm> {
 
   @override
   Widget build(BuildContext context) {
-    String dropdownValue = '--Wallet Type--';
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: (() {
@@ -43,10 +45,8 @@ class CreateWalletFormState extends State<CreateWalletForm> {
       child: Form(
         key: _formKey,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            const Text('QQ'),
+            const SizedBox(height: 100),
             Padding(
               padding: const EdgeInsets.only(left: 10.0, right: 10.0),
               child: TextFormField(
@@ -60,7 +60,7 @@ class CreateWalletFormState extends State<CreateWalletForm> {
                   labelStyle: TextStyle(
                     fontSize: myFocusNode.hasFocus ||
                             _walletNameController.text.isNotEmpty
-                        ? 20
+                        ? 16
                         : 18,
                     fontWeight: myFocusNode.hasFocus
                         ? FontWeight.bold
@@ -69,52 +69,67 @@ class CreateWalletFormState extends State<CreateWalletForm> {
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
+                    return 'Field cannot be empty';
                   }
                   return null;
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-              child: DropdownButtonFormField<String>(
-                decoration: const InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    //<-- SEE HERE
-                    borderSide: BorderSide(color: Colors.black, width: 2),
+            const SizedBox(height: 30),
+            DropdownButtonHideUnderline(
+              child: DropdownButtonFormField2(
+                decoration: InputDecoration(
+                  isDense: true,
+                  contentPadding: EdgeInsets.zero,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    //<-- SEE HERE
-                    borderSide: BorderSide(color: Colors.black, width: 2),
-                  ),
-                  // filled: true,
-                  // fillColor: Colors.greenAccent,
                 ),
-                // dropdownColor: Colors.greenAccent,
-                value: dropdownValue,
-                onChanged: (String? newValue) {
+                buttonHeight: 60,
+                buttonPadding: const EdgeInsets.only(left: 20, right: 10),
+                dropdownDecoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                validator: (value) => value == null || value == 'Select Item'
+                    ? 'Please select a Wallet Type'
+                    : null,
+                hint: Text(
+                  'Select Item',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Theme.of(context).hintColor,
+                  ),
+                ),
+                items: items
+                    .map((item) => DropdownMenuItem<String>(
+                          value: item,
+                          child: Text(
+                            item,
+                            style: const TextStyle(
+                              fontSize: 14,
+                            ),
+                          ),
+                        ))
+                    .toList(),
+                value: selectedValue,
+                onChanged: (value) {
                   setState(() {
-                    dropdownValue = newValue!;
+                    selectedValue = value as String;
                   });
                 },
-                items: <String>[
-                  '--Wallet Type--',
-                  'Dog',
-                  'Cat',
-                  'Tiger',
-                  'Lion'
-                ].map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(
-                      value,
-                      style: const TextStyle(fontSize: 18),
-                    ),
-                  );
-                }).toList(),
               ),
             ),
+            const SizedBox(height: 30),
             ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all(Palette.primaryColor),
+                  minimumSize: MaterialStateProperty.all(const Size(200, 50)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                          side: const BorderSide(
+                              color: Palette.secondaryColor)))),
               onPressed: () {
                 // Validate returns true if the form is valid, or false otherwise.
                 if (_formKey.currentState!.validate()) {
