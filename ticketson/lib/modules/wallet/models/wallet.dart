@@ -7,12 +7,14 @@ class Wallet {
   final String uid;
   final String name;
   final String walletType;
+  final int ticketCount;
   final DateTime createdAt;
 
   Wallet(
     this.uid,
     this.name,
     this.walletType,
+    this.ticketCount,
     this.createdAt,
   );
 

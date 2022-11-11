@@ -4,7 +4,7 @@
       "walletUid": "b6eaf203-14f0-481b-9d15-e2e6a0b285ea",
       "uid":"674891dd-9253-427c-92ca-1ba3baaa8125",
       "name": "Ticket1",
-      "status": "Pending",
+      "status": "win",
       "number": "12345-12345",
       "createdAt": "2022-11-01 00:00:32.370"
     },
@@ -12,7 +12,7 @@
       "walletUid": "b6eaf203-14f0-481b-9d15-e2e6a0b285ea",
       "uid":"a50f3dcc-df85-4ec7-b764-0bad47f3dd5c",
       "name": "Ticket2",
-      "status": "Pending",
+      "status": "pending",
       "number": "123456-123456",
       "createdAt": "2022-11-01 00:00:32.370"
     },
@@ -20,7 +20,7 @@
       "walletUid": "b6eaf203-14f0-481b-9d15-e2e6a0b285ea",
       "uid":"9a340173-0d6a-4b65-a0d8-0b68ac0d4938",
       "name": "Ticket3",
-      "status": "Pending",
+      "status": "lost",
       "number": "1234567-1234567",
       "createdAt": "2022-11-01 00:00:32.370"
     },
@@ -28,7 +28,7 @@
       "walletUid": "b6eaf203-14f0-481b-9d15-e2e6a0b285ea",
       "uid":"ad313d0d-b2f9-4cf6-9db7-290f308460ea",
       "name": "Ticket4",
-      "status": "Win",
+      "status": "win",
       "number": "12345678-12345678",
       "createdAt": "2022-11-01 00:00:32.370"
     },
@@ -36,7 +36,7 @@
       "walletUid": "b6eaf203-14f0-481b-9d15-e2e6a0b285ea",
       "uid":"4499c197-9b65-4129-803e-27b7f17988e8",
       "name": "Ticket5",
-      "status": "Lost",
+      "status": "lost",
       "number": "123456789-123456789",
       "createdAt": "2022-11-01 00:00:32.370"
     }

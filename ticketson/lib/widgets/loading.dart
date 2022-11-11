@@ -11,7 +11,7 @@ class Loading extends StatelessWidget {
         child: LoadingAnimationWidget.discreteCircle(
       color: Palette.primaryColor,
       secondRingColor: Palette.accentColor,
-      thirdRingColor: Palette.secondaryColor,
+      thirdRingColor: Palette.primaryColor,
       size: 200,
     ));
   }

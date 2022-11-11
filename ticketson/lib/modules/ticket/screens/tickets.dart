@@ -1,7 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:ticketson/config/themes/custom_images.dart';
 import 'package:ticketson/config/themes/palette.dart';
 import 'package:ticketson/config/urls.dart';
 import 'package:ticketson/modules/ticket/bloc/ticket_bloc.dart';
@@ -31,35 +31,52 @@ class _TicketScreenState extends State<TicketScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Palette.accentColor,
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            iconSize: 30.0,
-            color: Colors.white,
-            onPressed: () {
-              Beamer.of(context).beamBack();
-            },
-          ),
-          title: Text('${widget.wallet.name} - Tickets'),
-          elevation: 0.0,
-          backgroundColor: Palette.primaryColor,
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(CustomImages.background),
+          fit: BoxFit.cover,
         ),
-        body: _buildTicket(),
-        bottomNavigationBar: const Navbar(selectedIndex: 1),
-        floatingActionButtonLocation:
-            FloatingActionButtonLocation.miniCenterDocked,
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: FloatingActionButton(
-            backgroundColor: Colors.blue,
-            child: const Icon(Icons.add),
-            onPressed: () {
-              Beamer.of(context).beamToNamed(Routes.dashboard);
-            },
+      ),
+      child: Scaffold(
+          backgroundColor: Palette.transparent,
+          appBar: AppBar(
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              iconSize: 25.0,
+              color: Palette.secondaryColor,
+              onPressed: () {
+                Beamer.of(context).beamBack();
+              },
+            ),
+            title: Text(
+              '${widget.wallet.name} - Tickets',
+              style: const TextStyle(
+                color: Palette.secondaryColor,
+              ),
+            ),
+            elevation: 0.0,
+            backgroundColor: Palette.primaryColor,
           ),
-        ));
+          body: _buildTicket(),
+          bottomNavigationBar: const Navbar(selectedIndex: 1),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.miniCenterDocked,
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FloatingActionButton(
+              backgroundColor: Colors.blue,
+              child: const Icon(
+                Icons.add,
+                size: 25.0,
+                color: Palette.secondaryColor,
+              ),
+              onPressed: () {
+                Beamer.of(context).beamToNamed(Routes.dashboard);
+              },
+            ),
+          )),
+    );
   }
 
   Widget _buildTicket() {
@@ -127,27 +144,11 @@ class _TicketItemState extends State<TicketItem> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          stops: [
-            0.1,
-            0.4,
-            0.7,
-            // 0.9,
-          ],
-          colors: [
-            Palette.cardGradient3,
-            Palette.cardGradient1,
-            Palette.cardGradient2,
-            // Colors.teal,
-          ],
-        ),
-        color: Colors.white.withOpacity(0.4),
+        color: Palette.primaryColor.withOpacity(0.5),
         borderRadius: BorderRadius.circular(16.0),
         border: Border.all(
           width: 1.5,
-          color: Colors.white.withOpacity(0.2),
+          color: Palette.accentColor.withOpacity(0.5),
         ),
         boxShadow: [
           BoxShadow(
@@ -169,12 +170,16 @@ class _TicketItemState extends State<TicketItem> {
                 const Icon(
                   Icons.confirmation_num,
                   size: 25.0,
-                  color: Palette.primaryColor,
+                  color: Palette.accentColor,
                 ),
+                const Padding(padding: EdgeInsets.only(right: 4.0)),
                 Text(
                   widget.ticket.number,
                   style: const TextStyle(
-                    color: Palette.primaryColor,
+                    color: Palette.secondaryColor,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w300,
+                    letterSpacing: 0.2,
                   ),
                 ),
               ],
@@ -186,13 +191,31 @@ class _TicketItemState extends State<TicketItem> {
                 const Text(
                   'Status:',
                   style: TextStyle(
-                    color: Palette.primaryColor,
+                    color: Palette.secondaryColor,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 0.2,
                   ),
                 ),
                 Text(
-                  widget.ticket.status,
-                  style: const TextStyle(
-                    color: Palette.primaryColor,
+                  widget.ticket.status.toUpperCase(),
+                  style: TextStyle(
+                    color: Palette.secondaryColor,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0.2,
+                    background: Paint()
+                      ..strokeWidth = 25
+                      ..color = widget.ticket.status == 'pending'
+                          ? Palette.ticketPending
+                          : widget.ticket.status == 'win'
+                              ? Palette.ticketWon
+                              : widget.ticket.status == 'lost'
+                                  ? Palette.ticketLost
+                                  : Palette.secondaryColor
+                      ..strokeJoin = StrokeJoin.round
+                      ..strokeCap = StrokeCap.round
+                      ..style = PaintingStyle.stroke,
                   ),
                 ),
               ],

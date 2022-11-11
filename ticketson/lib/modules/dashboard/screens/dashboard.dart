@@ -1,7 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:ticketson/config/themes/custom_images.dart';
 import 'package:ticketson/config/themes/palette.dart';
 import 'package:ticketson/config/urls.dart';
 import 'package:ticketson/modules/wallet/bloc/wallet_bloc.dart';
@@ -28,32 +28,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // decoration: const BoxDecoration(
-      //   image: DecorationImage(
-      //     image: AssetImage("assets/images/7.jpg"),
-      //     fit: BoxFit.cover,
-      //   ),
-      // ),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(CustomImages.background),
+          fit: BoxFit.cover,
+        ),
+      ),
       child: Scaffold(
-          backgroundColor: Palette.accentColor,
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(
-                Icons.person,
-              ),
-              iconSize: 25.0,
-              color: Palette.secondaryColor,
-              onPressed: () {},
-            ),
-            title: const Text(
-              'adrian@code.je',
-              style: TextStyle(
-                color: Palette.secondaryColor,
-              ),
-            ),
-            elevation: 0.0,
-            backgroundColor: Palette.primaryColor,
-          ),
+          backgroundColor: Palette.transparent,
           body: _buildWallets(),
           bottomNavigationBar: const Navbar(selectedIndex: 1),
           floatingActionButtonLocation:
@@ -61,10 +43,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
           floatingActionButton: Padding(
             padding: const EdgeInsets.all(8.0),
             child: FloatingActionButton(
-              backgroundColor: Palette.secondaryColor,
+              backgroundColor: Palette.accentColor,
               child: const Icon(
                 Icons.add,
-                color: Palette.primaryColor,
+                color: Palette.secondaryColor,
                 size: 25.0,
               ),
               onPressed: () {
@@ -145,27 +127,11 @@ class _WalletItemState extends State<WalletItem> {
       }),
       child: Container(
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            stops: [
-              0.1,
-              0.4,
-              0.7,
-              // 0.9,
-            ],
-            colors: [
-              Palette.cardGradient3,
-              Palette.cardGradient1,
-              Palette.cardGradient2,
-              // Colors.teal,
-            ],
-          ),
-          color: Colors.white.withOpacity(0.4),
+          color: Palette.primaryColor.withOpacity(0.5),
           borderRadius: BorderRadius.circular(16.0),
           border: Border.all(
-            width: 1.5,
-            color: Colors.white.withOpacity(0.2),
+            width: 2.0,
+            color: Palette.accentColor.withOpacity(0.5),
           ),
           boxShadow: [
             BoxShadow(
@@ -182,12 +148,20 @@ class _WalletItemState extends State<WalletItem> {
           child: Column(
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  const Icon(
+                    Icons.wallet,
+                    size: 25.0,
+                    color: Palette.accentColor,
+                  ),
+                  const Padding(padding: EdgeInsets.only(right: 4.0)),
                   Text(
                     widget.wallet.name,
                     style: const TextStyle(
-                      color: Palette.primaryColor,
+                      color: Colors.white,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w300,
+                      letterSpacing: 0.2,
                     ),
                   ),
                 ],
@@ -195,18 +169,20 @@ class _WalletItemState extends State<WalletItem> {
               const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: const [
+                children: [
                   Text(
-                    '1',
-                    style: TextStyle(
-                      color: Palette.primaryColor,
+                    widget.wallet.ticketCount.toString(),
+                    style: const TextStyle(
+                      color: Palette.secondaryColor,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w900,
                     ),
                   ),
-                  Padding(padding: EdgeInsets.all(2.0)),
-                  Icon(
+                  const Padding(padding: EdgeInsets.all(2.0)),
+                  const Icon(
                     Icons.airplane_ticket,
-                    size: 25.0,
-                    color: Palette.primaryColor,
+                    size: 30.0,
+                    color: Palette.accentColor,
                   )
                 ],
               ),

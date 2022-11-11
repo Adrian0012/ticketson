@@ -128,8 +128,8 @@ class CreateWalletFormState extends State<CreateWalletForm> {
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18.0),
-                          side: const BorderSide(
-                              color: Palette.secondaryColor)))),
+                          side:
+                              const BorderSide(color: Palette.primaryColor)))),
               onPressed: () {
                 // Validate returns true if the form is valid, or false otherwise.
                 if (_formKey.currentState!.validate()) {

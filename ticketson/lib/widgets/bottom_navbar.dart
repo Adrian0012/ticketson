@@ -31,16 +31,18 @@ class _NavbarState extends State<Navbar> {
         child: BottomNavigationBar(
           currentIndex: widget.selectedIndex,
           backgroundColor: Palette.primaryColor,
-          selectedItemColor: Colors.red,
+          selectedItemColor: Colors.black,
+          unselectedFontSize: 14.0,
           unselectedItemColor: Palette.secondaryColor,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-                icon: Icon(
-                  size: 25.0,
-                  Icons.notifications,
-                  color: Palette.secondaryColor,
-                ),
-                label: 'Notifications'),
+              icon: Icon(
+                size: 25.0,
+                Icons.notifications,
+                color: Palette.accentColor,
+              ),
+              label: 'Notifications',
+            ),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.home,
@@ -51,7 +53,7 @@ class _NavbarState extends State<Navbar> {
                 icon: Icon(
                   size: 25.0,
                   Icons.settings,
-                  color: Palette.secondaryColor,
+                  color: Palette.accentColor,
                 ),
                 label: 'Account')
           ],
