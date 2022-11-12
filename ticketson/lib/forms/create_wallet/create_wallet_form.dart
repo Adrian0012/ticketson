@@ -1,6 +1,8 @@
+import 'package:beamer/beamer.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:ticketson/config/themes/palette.dart';
+import 'package:ticketson/config/urls.dart';
 
 class CreateWalletForm extends StatefulWidget {
   const CreateWalletForm({super.key});
@@ -43,99 +45,103 @@ class CreateWalletFormState extends State<CreateWalletForm> {
       child: Form(
         key: _formKey,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            const SizedBox(height: 100),
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-              child: TextFormField(
-                onFieldSubmitted: (term) {
-                  FocusScope.of(context).requestFocus(myFocusNode);
-                },
-                decoration: InputDecoration(
-                  focusedBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                      borderSide: BorderSide(color: Palette.primaryColor)),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: const BorderSide(
-                      color: Palette.primaryColor,
-                    ),
-                  ),
-                  contentPadding:
-                      const EdgeInsets.only(left: 10.0, right: 10.0),
-                  labelText: 'Wallet Name',
-                  labelStyle: TextStyle(
-                    color: Palette.accentColor,
-                    fontSize: myFocusNode.hasFocus ||
-                            _walletNameController.text.isNotEmpty
-                        ? 16
-                        : 16,
-                    fontWeight: myFocusNode.hasFocus
-                        ? FontWeight.bold
-                        : FontWeight.normal,
-                  ),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Field cannot be empty';
-                  }
-                  return null;
-                },
-              ),
-            ),
-            const SizedBox(height: 60),
-            DropdownButtonHideUnderline(
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: DropdownButtonFormField2(
-                  buttonDecoration: BoxDecoration(
-                      color: Palette.primaryColor,
-                      borderRadius: BorderRadius.circular(15)),
+            Column(children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                child: TextFormField(
+                  controller: _walletNameController,
+                  onFieldSubmitted: (term) {
+                    FocusScope.of(context).requestFocus(myFocusNode);
+                  },
+                  style: const TextStyle(color: Palette.primaryColor),
                   decoration: InputDecoration(
-                    isDense: true,
-                    contentPadding: EdgeInsets.zero,
-                    border: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      borderSide: BorderSide(color: Palette.primaryColor),
+                    ),
+                    enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15),
+                      borderSide: const BorderSide(
+                        color: Palette.primaryColor,
+                      ),
+                    ),
+                    contentPadding:
+                        const EdgeInsets.only(left: 20.0, right: 10.0),
+                    labelText: 'Wallet Name',
+                    labelStyle: TextStyle(
+                      color: Palette.inputTextColor,
+                      fontSize: myFocusNode.hasFocus ? 16 : 16,
+                      fontWeight: myFocusNode.hasFocus
+                          ? FontWeight.bold
+                          : FontWeight.normal,
                     ),
                   ),
-                  buttonHeight: 60,
-                  buttonPadding: const EdgeInsets.only(left: 20, right: 10),
-                  dropdownDecoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Palette.primaryColor,
-                  ),
-                  validator: (value) => value == null || value == 'Select Item'
-                      ? 'Please select a Wallet Type'
-                      : null,
-                  hint: const Text(
-                    'Wallet Type',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Palette.secondaryColor,
-                    ),
-                  ),
-                  items: items
-                      .map((item) => DropdownMenuItem<String>(
-                            value: item,
-                            child: Text(
-                              item,
-                              style: const TextStyle(
-                                fontSize: 14,
-                                color: Palette.secondaryColor,
-                              ),
-                            ),
-                          ))
-                      .toList(),
-                  value: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = value as String;
-                    });
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Field cannot be empty';
+                    }
+                    return null;
                   },
                 ),
               ),
-            ),
-            const SizedBox(height: 100),
+              DropdownButtonHideUnderline(
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButtonFormField2(
+                    buttonDecoration: BoxDecoration(
+                      border: Border.all(
+                        color: Palette.primaryColor,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    decoration: InputDecoration(
+                      isDense: true,
+                      contentPadding: EdgeInsets.zero,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    buttonHeight: 50,
+                    buttonPadding: const EdgeInsets.only(left: 20, right: 10),
+                    dropdownDecoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Palette.primaryColor,
+                    ),
+                    validator: (value) =>
+                        value == null || value == 'Select Item'
+                            ? 'Please select a Wallet Type'
+                            : null,
+                    hint: const Text(
+                      'Wallet Type',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Palette.inputTextColor,
+                      ),
+                    ),
+                    items: items
+                        .map((item) => DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Palette.inputTextColor,
+                                ),
+                              ),
+                            ))
+                        .toList(),
+                    value: selectedValue,
+                    onChanged: (value) {
+                      setState(() {
+                        selectedValue = value as String;
+                      });
+                    },
+                  ),
+                ),
+              ),
+            ]),
             ElevatedButton(
               style: ButtonStyle(
                   backgroundColor:
@@ -154,6 +160,9 @@ class CreateWalletFormState extends State<CreateWalletForm> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Processing Data')),
                   );
+                  print('===>${_walletNameController.text}<===');
+                  print('===>$selectedValue<===');
+                  Beamer.of(context).beamToNamed(Routes.dashboard);
                 }
               },
               child: const Text(

@@ -115,6 +115,7 @@ Widget _buildTicketItems(BuildContext context, List<Ticket> model) {
     children: <Widget>[
       Expanded(
         child: ListView.builder(
+            shrinkWrap: true,
             itemCount: model.length,
             itemBuilder: (BuildContext content, int index) {
               final Ticket ticket = model[index];
@@ -142,87 +143,87 @@ class TicketItem extends StatefulWidget {
 class _TicketItemState extends State<TicketItem> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Palette.primaryColor.withOpacity(0.5),
-        borderRadius: BorderRadius.circular(16.0),
-        border: Border.all(
-          width: 1.5,
-          color: Palette.accentColor.withOpacity(0.5),
-        ),
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 16,
-            spreadRadius: 16,
-            color: Colors.black.withOpacity(0.1),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Expanded(
+          flex: 8,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Palette.primaryColor.withOpacity(0.5),
+              borderRadius: BorderRadius.circular(16.0),
+              border: Border.all(
+                width: 1.5,
+                color: Palette.accentColor.withOpacity(0.5),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 16,
+                  spreadRadius: 16,
+                  color: Colors.black.withOpacity(0.1),
+                ),
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.confirmation_num,
+                        size: 25.0,
+                        color: Palette.accentColor,
+                      ),
+                      const Padding(padding: EdgeInsets.only(right: 4.0)),
+                      Text(
+                        widget.ticket.number,
+                        style: const TextStyle(
+                          color: Palette.secondaryColor,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w300,
+                          letterSpacing: 0.2,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ),
-        ],
-      ),
-      width: 360,
-      height: 100,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                const Icon(
-                  Icons.confirmation_num,
-                  size: 25.0,
-                  color: Palette.accentColor,
-                ),
-                const Padding(padding: EdgeInsets.only(right: 4.0)),
-                Text(
-                  widget.ticket.number,
-                  style: const TextStyle(
-                    color: Palette.secondaryColor,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w300,
-                    letterSpacing: 0.2,
-                  ),
-                ),
-              ],
-            ),
-            const Padding(padding: EdgeInsets.only(bottom: 10.0)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Status:',
-                  style: TextStyle(
-                    color: Palette.secondaryColor,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 0.2,
-                  ),
-                ),
-                Text(
-                  widget.ticket.status.toUpperCase(),
-                  style: TextStyle(
-                    color: Palette.secondaryColor,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0.2,
-                    background: Paint()
-                      ..strokeWidth = 25
-                      ..color = widget.ticket.status == 'pending'
-                          ? Palette.ticketPending
-                          : widget.ticket.status == 'win'
-                              ? Palette.ticketWon
-                              : widget.ticket.status == 'lost'
-                                  ? Palette.ticketLost
-                                  : Palette.secondaryColor
-                      ..strokeJoin = StrokeJoin.round
-                      ..strokeCap = StrokeCap.round
-                      ..style = PaintingStyle.stroke,
-                  ),
-                ),
-              ],
-            ),
-          ],
         ),
-      ),
+        const Padding(padding: EdgeInsets.only(right: 5.0)),
+        Expanded(
+          flex: 2,
+          child: Container(
+            height: 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16.0),
+              color: widget.ticket.status == 'pending'
+                  ? Palette.ticketPending
+                  : widget.ticket.status == 'win'
+                      ? Palette.ticketWon
+                      : widget.ticket.status == 'lost'
+                          ? Palette.ticketLost
+                          : Palette.secondaryColor,
+            ),
+            child: Center(
+              child: Text(
+                textAlign: TextAlign.center,
+                widget.ticket.status.toUpperCase(),
+                style: const TextStyle(
+                  color: Palette.secondaryColor,
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.2,
+                ),
+              ),
+            ),
+          ),
+        )
+      ],
     );
   }
 }
