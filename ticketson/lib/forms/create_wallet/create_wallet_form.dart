@@ -11,8 +11,6 @@ class CreateWalletForm extends StatefulWidget {
   }
 }
 
-// Create a corresponding State class.
-// This class holds data related to the form.
 class CreateWalletFormState extends State<CreateWalletForm> {
   late FocusNode myFocusNode;
   final TextEditingController _walletNameController = TextEditingController();
@@ -54,14 +52,24 @@ class CreateWalletFormState extends State<CreateWalletForm> {
                   FocusScope.of(context).requestFocus(myFocusNode);
                 },
                 decoration: InputDecoration(
+                  focusedBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      borderSide: BorderSide(color: Palette.primaryColor)),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: const BorderSide(
+                      color: Palette.primaryColor,
+                    ),
+                  ),
                   contentPadding:
                       const EdgeInsets.only(left: 10.0, right: 10.0),
                   labelText: 'Wallet Name',
                   labelStyle: TextStyle(
+                    color: Palette.accentColor,
                     fontSize: myFocusNode.hasFocus ||
                             _walletNameController.text.isNotEmpty
                         ? 16
-                        : 18,
+                        : 16,
                     fontWeight: myFocusNode.hasFocus
                         ? FontWeight.bold
                         : FontWeight.normal,
@@ -75,51 +83,59 @@ class CreateWalletFormState extends State<CreateWalletForm> {
                 },
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 60),
             DropdownButtonHideUnderline(
-              child: DropdownButtonFormField2(
-                decoration: InputDecoration(
-                  isDense: true,
-                  contentPadding: EdgeInsets.zero,
-                  border: OutlineInputBorder(
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: DropdownButtonFormField2(
+                  buttonDecoration: BoxDecoration(
+                      color: Palette.primaryColor,
+                      borderRadius: BorderRadius.circular(15)),
+                  decoration: InputDecoration(
+                    isDense: true,
+                    contentPadding: EdgeInsets.zero,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  buttonHeight: 60,
+                  buttonPadding: const EdgeInsets.only(left: 20, right: 10),
+                  dropdownDecoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
+                    color: Palette.primaryColor,
                   ),
-                ),
-                buttonHeight: 60,
-                buttonPadding: const EdgeInsets.only(left: 20, right: 10),
-                dropdownDecoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                validator: (value) => value == null || value == 'Select Item'
-                    ? 'Please select a Wallet Type'
-                    : null,
-                hint: Text(
-                  'Select Item',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Theme.of(context).hintColor,
+                  validator: (value) => value == null || value == 'Select Item'
+                      ? 'Please select a Wallet Type'
+                      : null,
+                  hint: const Text(
+                    'Wallet Type',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Palette.secondaryColor,
+                    ),
                   ),
-                ),
-                items: items
-                    .map((item) => DropdownMenuItem<String>(
-                          value: item,
-                          child: Text(
-                            item,
-                            style: const TextStyle(
-                              fontSize: 14,
+                  items: items
+                      .map((item) => DropdownMenuItem<String>(
+                            value: item,
+                            child: Text(
+                              item,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Palette.secondaryColor,
+                              ),
                             ),
-                          ),
-                        ))
-                    .toList(),
-                value: selectedValue,
-                onChanged: (value) {
-                  setState(() {
-                    selectedValue = value as String;
-                  });
-                },
+                          ))
+                      .toList(),
+                  value: selectedValue,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedValue = value as String;
+                    });
+                  },
+                ),
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 100),
             ElevatedButton(
               style: ButtonStyle(
                   backgroundColor:
@@ -140,7 +156,13 @@ class CreateWalletFormState extends State<CreateWalletForm> {
                   );
                 }
               },
-              child: const Text('Submit'),
+              child: const Text(
+                'Submit',
+                style: TextStyle(
+                  color: Palette.secondaryColor,
+                  fontSize: 16,
+                ),
+              ),
             ),
           ],
         ),
