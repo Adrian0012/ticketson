@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:ticketson/modules/ticket/models/ticket.dart';
-import 'package:ticketson/modules/ticket/provider/ticket_provider.dart';
+import 'package:ticketson/modules/tickets/models/ticket.dart';
+import 'package:ticketson/modules/tickets/provider/ticket_provider.dart';
 
 class TicketRepository {
   final _ticketProvider = TicketProvider();

@@ -4,19 +4,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ticketson/config/themes/custom_images.dart';
 import 'package:ticketson/config/themes/palette.dart';
 import 'package:ticketson/config/urls.dart';
-import 'package:ticketson/modules/wallet/bloc/wallet_bloc.dart';
-import 'package:ticketson/modules/wallet/models/wallet.dart';
-import 'package:ticketson/widgets/bottom_navbar.dart';
-import 'package:ticketson/widgets/loading.dart';
+import 'package:ticketson/modules/wallets/bloc/wallet_bloc.dart';
+import 'package:ticketson/modules/wallets/models/wallet.dart';
+import 'package:ticketson/common_widgets/bottom_navbar.dart';
+import 'package:ticketson/modules/wallets/widgets/wallets_skeleton_loading.dart';
 
-class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({super.key});
+class WalletsScreen extends StatefulWidget {
+  const WalletsScreen({super.key});
 
   @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
+  State<WalletsScreen> createState() => _WalletsScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
+class _WalletsScreenState extends State<WalletsScreen> {
   final WalletBloc _walletBloc = WalletBloc();
 
   @override
@@ -28,33 +28,30 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(CustomImages.background),
-          fit: BoxFit.cover,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: CustomImages.background,
+            fit: BoxFit.cover,
+          ),
         ),
-      ),
-      child: Scaffold(
+        child: Scaffold(
           backgroundColor: Palette.transparent,
           body: _buildWallets(),
-          bottomNavigationBar: const Navbar(selectedIndex: 1),
+          bottomNavigationBar: const CustomBottomNavbar(selectedIndex: 1),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterDocked,
-          floatingActionButton: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FloatingActionButton(
-              backgroundColor: Palette.accentColor,
-              child: const Icon(
-                Icons.add,
-                color: Palette.secondaryColor,
-                size: 25.0,
-              ),
-              onPressed: () {
-                Beamer.of(context).beamToNamed(Routes.createWalletForm);
-              },
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Palette.accentColor,
+            child: const Icon(
+              Icons.add,
+              color: Palette.secondaryColor,
+              size: 25.0,
             ),
-          )),
-    );
+            onPressed: () {
+              Beamer.of(context).beamToNamed(Routes.createWalletForm);
+            },
+          ),
+        ));
   }
 
   Widget _buildWallets() {
@@ -73,9 +70,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
         child: BlocBuilder<WalletBloc, WalletState>(
           builder: (context, state) {
             if (state is WalletsInitial) {
-              return const Loading();
+              return const WalletsSkeletonLoading();
             } else if (state is WalletsLoading) {
-              return const Loading();
+              return const WalletsSkeletonLoading();
             } else if (state is WalletsLoaded) {
               return _buildWalletItems(context, state.wallets);
             } else {
@@ -127,7 +124,7 @@ class _WalletItemState extends State<WalletItem> {
       }),
       child: Container(
         decoration: BoxDecoration(
-          color: Palette.primaryColor.withOpacity(0.5),
+          color: Palette.primaryColor.withOpacity(0.2),
           borderRadius: BorderRadius.circular(16.0),
           border: Border.all(
             width: 2.0,
@@ -152,7 +149,7 @@ class _WalletItemState extends State<WalletItem> {
                   const Icon(
                     Icons.wallet,
                     size: 25.0,
-                    color: Palette.accentColor,
+                    color: Palette.primaryColor,
                   ),
                   const Padding(padding: EdgeInsets.only(right: 4.0)),
                   Text(
@@ -182,7 +179,7 @@ class _WalletItemState extends State<WalletItem> {
                   const Icon(
                     Icons.airplane_ticket,
                     size: 30.0,
-                    color: Palette.accentColor,
+                    color: Palette.primaryColor,
                   )
                 ],
               ),

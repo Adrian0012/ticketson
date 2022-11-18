@@ -2,7 +2,7 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:ticketson/config/themes/custom_images.dart';
 import 'package:ticketson/config/themes/palette.dart';
-import 'package:ticketson/forms/create_wallet/create_wallet_form.dart';
+import 'package:ticketson/modules/wallets/forms/create_wallet/create_wallet_form.dart';
 
 class CreateWalletScreen extends StatefulWidget {
   const CreateWalletScreen({super.key});
@@ -17,7 +17,7 @@ class _CreateWalletStateScreen extends State<CreateWalletScreen> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(CustomImages.background),
+          image: CustomImages.background,
           fit: BoxFit.cover,
         ),
       ),

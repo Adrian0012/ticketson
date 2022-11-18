@@ -1,24 +1,24 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ticketson/common_widgets/bottom_navbar.dart';
 import 'package:ticketson/config/themes/custom_images.dart';
 import 'package:ticketson/config/themes/palette.dart';
 import 'package:ticketson/config/urls.dart';
-import 'package:ticketson/modules/ticket/bloc/ticket_bloc.dart';
-import 'package:ticketson/modules/ticket/models/ticket.dart';
-import 'package:ticketson/modules/wallet/models/wallet.dart';
-import 'package:ticketson/widgets/bottom_navbar.dart';
-import 'package:ticketson/widgets/loading.dart';
+import 'package:ticketson/modules/tickets/bloc/ticket_bloc.dart';
+import 'package:ticketson/modules/tickets/models/ticket.dart';
+import 'package:ticketson/modules/tickets/widgets/tickets_skeleton_loading.dart';
+import 'package:ticketson/modules/wallets/models/wallet.dart';
 
-class TicketScreen extends StatefulWidget {
-  const TicketScreen({super.key, required this.wallet});
+class TicketsScreen extends StatefulWidget {
+  const TicketsScreen({super.key, required this.wallet});
   final Wallet wallet;
 
   @override
-  State<TicketScreen> createState() => _TicketScreenState();
+  State<TicketsScreen> createState() => _TicketsScreenState();
 }
 
-class _TicketScreenState extends State<TicketScreen> {
+class _TicketsScreenState extends State<TicketsScreen> {
   final TicketBloc _ticketBloc = TicketBloc();
 
   @override
@@ -34,7 +34,7 @@ class _TicketScreenState extends State<TicketScreen> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(CustomImages.background),
+          image: CustomImages.background,
           fit: BoxFit.cover,
         ),
       ),
@@ -59,7 +59,7 @@ class _TicketScreenState extends State<TicketScreen> {
             backgroundColor: Palette.primaryColor,
           ),
           body: _buildTicket(),
-          bottomNavigationBar: const Navbar(selectedIndex: 1),
+          bottomNavigationBar: const CustomBottomNavbar(selectedIndex: 1),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterDocked,
           floatingActionButton: Padding(
@@ -95,9 +95,9 @@ class _TicketScreenState extends State<TicketScreen> {
         child: BlocBuilder<TicketBloc, TicketState>(
           builder: (context, state) {
             if (state is TicketInitial) {
-              return const Loading();
+              return const TicketsSkeletonLoading();
             } else if (state is TicketLoading) {
-              return const Loading();
+              return const TicketsSkeletonLoading();
             } else if (state is TicketLoaded) {
               return _buildTicketItems(context, state.tickets);
             } else {

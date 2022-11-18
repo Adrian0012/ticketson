@@ -1,7 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:ticketson/config/urls.dart';
-import 'package:ticketson/forms/create_wallet/screens/create_wallet.dart';
+import 'package:ticketson/modules/wallets/forms/create_wallet/screens/create_wallet.dart';
 
 class CreateWalletLocation extends BeamLocation<BeamState> {
   @override

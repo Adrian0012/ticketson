@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+
 class CustomImages {
-  static const String background = 'assets/images/background-image.jpg';
+  static const ImageProvider background =
+      AssetImage('assets/images/background-image.jpg');
 }

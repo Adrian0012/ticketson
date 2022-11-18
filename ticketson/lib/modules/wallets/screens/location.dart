@@ -1,7 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:ticketson/config/urls.dart';
-import 'package:ticketson/modules/dashboard/screens/dashboard.dart';
+import 'package:ticketson/modules/wallets/screens/wallets/wallets.dart';
 
 class DashboardLocation extends BeamLocation<BeamState> {
   @override
@@ -13,7 +13,7 @@ class DashboardLocation extends BeamLocation<BeamState> {
       const BeamPage(
         key: ValueKey('dashboard'),
         title: 'Dashboard',
-        child: DashboardScreen(),
+        child: WalletsScreen(),
       ),
     ];
     return pages;

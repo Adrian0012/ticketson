@@ -3,20 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:ticketson/config/themes/palette.dart';
 import 'package:ticketson/config/urls.dart';
 
-class Navbar extends StatefulWidget {
-  const Navbar({Key? key, required this.selectedIndex}) : super(key: key);
+class CustomBottomNavbar extends StatefulWidget {
+  const CustomBottomNavbar({Key? key, required this.selectedIndex})
+      : super(key: key);
   final int selectedIndex;
 
   @override
-  State<Navbar> createState() => _NavbarState();
+  State<CustomBottomNavbar> createState() => _CustomBottomNavbarState();
 }
 
-class _NavbarState extends State<Navbar> {
+class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
       shape: const CircularNotchedRectangle(),
-      notchMargin: 8.0,
+      notchMargin: 2.0,
       clipBehavior: Clip.antiAlias,
       child: Container(
         decoration: const BoxDecoration(

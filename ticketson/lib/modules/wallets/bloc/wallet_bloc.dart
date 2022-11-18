@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:ticketson/modules/wallet/models/wallet.dart';
-import 'package:ticketson/modules/wallet/repository/wallet_repository.dart';
+import 'package:ticketson/modules/wallets/models/wallet.dart';
+import 'package:ticketson/modules/wallets/repository/wallet_repository.dart';
 
 part 'wallet_event.dart';
 part 'wallet_state.dart';

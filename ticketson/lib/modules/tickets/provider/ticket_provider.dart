@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:ticketson/modules/ticket/models/ticket.dart';
+import 'package:ticketson/modules/tickets/models/ticket.dart';
 
 class TicketProvider {
   Future<List<Ticket>> getTickets(String walletUid) async {

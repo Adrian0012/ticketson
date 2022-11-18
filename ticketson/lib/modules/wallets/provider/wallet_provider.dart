@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:ticketson/modules/wallet/models/wallet.dart';
+import 'package:ticketson/modules/wallets/models/wallet.dart';
 
 class WalletProvider {
   Future<List<Wallet>> getWallets() async {

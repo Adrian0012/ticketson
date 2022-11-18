@@ -1,7 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:ticketson/config/urls.dart';
-import 'package:ticketson/modules/ticket/screens/tickets.dart';
+import 'package:ticketson/modules/tickets/screens/tickets/tickets.dart';
 
 class TicketLocation extends BeamLocation<BeamState> {
   @override
@@ -14,7 +14,7 @@ class TicketLocation extends BeamLocation<BeamState> {
     final pages = [
       BeamPage(
           key: const ValueKey('wallet/tickets'),
-          child: TicketScreen(wallet: _data['wallet'])),
+          child: TicketsScreen(wallet: _data['wallet'])),
     ];
     return pages;
   }

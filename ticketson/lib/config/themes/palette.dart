@@ -14,4 +14,6 @@ class Palette {
   static const Color ticketPending = Colors.blueGrey;
   static const Color ticketWon = Colors.green;
   static const Color ticketLost = Colors.red;
+
+  static const Color chatBackground = Color(0xfff5f5f5);
 }
