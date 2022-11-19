@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:ticketson/config/themes/palette.dart';
 
 const _shimmerGradient = LinearGradient(
   colors: [
-    Color(0xFFEBEBF4),
-    Color(0xFFF4F4F4),
-    Color(0xFFEBEBF4),
+    Palette.shimmerColor1,
+    Palette.shimmerColor2,
+    Palette.shimmerColor3,
   ],
   stops: [
     0.1,
@@ -230,48 +231,59 @@ class CardListItem extends StatelessWidget {
         children: [
           _buildImage(),
           const SizedBox(height: 16),
-          _buildText(),
+          _buildImage(),
+          const SizedBox(height: 16),
+          _buildImage(),
+          const SizedBox(height: 16),
+          _buildImage(),
+          const SizedBox(height: 16),
+          _buildImage(),
+          const SizedBox(height: 16),
+          _buildImage(),
+          const SizedBox(height: 16),
+          _buildImage(),
+          const SizedBox(height: 16),
+          _buildImage(),
+          const SizedBox(height: 16),
+          _buildImage(),
+          const SizedBox(height: 16),
+          _buildImage(),
+          const SizedBox(height: 16),
+          _buildImage(),
+          const SizedBox(height: 16),
+          _buildImage(),
+          const SizedBox(height: 16),
         ],
       ),
     );
   }
 
   Widget _buildImage() {
-    return AspectRatio(
-        aspectRatio: 16 / 9,
-        child: Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-          ),
-        ));
-  }
-
-  Widget _buildText() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          width: double.infinity,
-          height: 24,
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(16),
+        Expanded(
+          flex: 8,
+          child: Container(
+            height: 50,
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(16),
+            ),
           ),
         ),
-        const SizedBox(height: 16),
-        Container(
-          width: 250,
-          height: 24,
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(16),
+        const Padding(padding: EdgeInsets.only(right: 5.0)),
+        Expanded(
+          flex: 2,
+          child: Container(
+            height: 25,
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(16),
+            ),
           ),
-        ),
+        )
       ],
     );
   }

@@ -151,7 +151,7 @@ class _TicketItemState extends State<TicketItem> {
           flex: 8,
           child: Container(
             decoration: BoxDecoration(
-              color: Palette.primaryColor.withOpacity(0.5),
+              color: Palette.primaryColor.withOpacity(0.2),
               borderRadius: BorderRadius.circular(16.0),
               border: Border.all(
                 width: 1.5,
@@ -175,7 +175,7 @@ class _TicketItemState extends State<TicketItem> {
                       const Icon(
                         Icons.confirmation_num,
                         size: 25.0,
-                        color: Palette.accentColor,
+                        color: Palette.primaryColor,
                       ),
                       const Padding(padding: EdgeInsets.only(right: 4.0)),
                       Text(
@@ -198,7 +198,7 @@ class _TicketItemState extends State<TicketItem> {
         Expanded(
           flex: 2,
           child: Container(
-            height: 50,
+            height: 25,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16.0),
               color: widget.ticket.status == 'pending'

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:ticketson/config/themes/palette.dart';
 
 const _shimmerGradient = LinearGradient(
   colors: [
-    Color(0xFFEBEBF4),
-    Color(0xFFF4F4F4),
-    Color(0xFFEBEBF4),
+    Palette.shimmerColor1,
+    Palette.shimmerColor2,
+    Palette.shimmerColor3,
   ],
   stops: [
     0.1,
