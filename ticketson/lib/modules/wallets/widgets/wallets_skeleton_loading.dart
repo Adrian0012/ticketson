@@ -39,7 +39,6 @@ class _WalletsSkeletonLoadingState extends State<WalletsSkeletonLoading> {
             _buildListItem(),
             _buildListItem(),
             _buildListItem(),
-            _buildListItem(),
           ],
         ),
       ),
@@ -229,7 +228,8 @@ class CardListItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildImage(),
-          // const SizedBox(height: 16),
+          const SizedBox(height: 16),
+          _buildText(),
         ],
       ),
     );
@@ -248,5 +248,30 @@ class CardListItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
           ),
         ));
+  }
+
+  Widget _buildText() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: double.infinity,
+          height: 24,
+          decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(16),
+          ),
+        ),
+        const SizedBox(height: 16),
+        Container(
+          width: 250,
+          height: 24,
+          decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(16),
+          ),
+        ),
+      ],
+    );
   }
 }

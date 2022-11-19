@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ticketson/config/urls.dart';
 import 'package:ticketson/modules/tickets/location.dart';
 import 'package:ticketson/modules/wallets/forms/create_wallet/location.dart';
-import 'package:ticketson/modules/wallets/screens/location.dart';
+import 'package:ticketson/modules/wallets/location.dart';
 
 class AppRouter {
   static final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();

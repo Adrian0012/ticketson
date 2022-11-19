@@ -1,7 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:ticketson/config/urls.dart';
-import 'package:ticketson/modules/wallets/screens/wallets/wallets.dart';
+import 'package:ticketson/modules/wallets/screens/wallets_list.dart';
 
 class DashboardLocation extends BeamLocation<BeamState> {
   @override
