@@ -6,8 +6,9 @@ class Routes {
   static const confirmRegisterEmail = '/confirmRegisterEmail';
   static const resetPassword = '/resetPassword';
   // APP ROUTES
-  static const dashboard = '/dashboard';
+  static const wallets = '/wallets';
   static const tickets = '/wallet/tickets';
+  static const account = '/account';
   // FORMS
   static const createWalletForm = '/createWallet';
 }

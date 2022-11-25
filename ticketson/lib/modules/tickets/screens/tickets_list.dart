@@ -32,13 +32,13 @@ class _TicketsScreenState extends State<TicketsScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: CustomImages.background,
-          fit: BoxFit.cover,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: CustomImages.background,
+            fit: BoxFit.cover,
+          ),
         ),
-      ),
-      child: Scaffold(
+        child: Scaffold(
           backgroundColor: Palette.transparent,
           appBar: AppBar(
             leading: IconButton(
@@ -62,21 +62,18 @@ class _TicketsScreenState extends State<TicketsScreen> {
           bottomNavigationBar: const CustomBottomNavbar(selectedIndex: 1),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterDocked,
-          floatingActionButton: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FloatingActionButton(
-              backgroundColor: Colors.blue,
-              child: const Icon(
-                Icons.add,
-                size: 25.0,
-                color: Palette.secondaryColor,
-              ),
-              onPressed: () {
-                Beamer.of(context).beamToNamed(Routes.dashboard);
-              },
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.blue,
+            child: const Icon(
+              Icons.add,
+              size: 25.0,
+              color: Palette.secondaryColor,
             ),
-          )),
-    );
+            onPressed: () {
+              Beamer.of(context).beamToNamed(Routes.account);
+            },
+          ),
+        ));
   }
 
   Widget _buildTicket() {

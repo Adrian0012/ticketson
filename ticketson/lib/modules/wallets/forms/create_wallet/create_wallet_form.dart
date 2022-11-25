@@ -162,7 +162,7 @@ class CreateWalletFormState extends State<CreateWalletForm> {
                   );
                   print('===>${_walletNameController.text}<===');
                   print('===>$selectedValue<===');
-                  Beamer.of(context).beamToNamed(Routes.dashboard);
+                  Beamer.of(context).beamToNamed(Routes.wallets);
                 }
               },
               child: const Text(

@@ -28,30 +28,19 @@ class _WalletsScreenState extends State<WalletsScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: CustomImages.background,
-            fit: BoxFit.cover,
-          ),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: const Alignment(-1, -1),
+          end: const Alignment(1.7, 0),
+          colors: Palette.baseGradient,
         ),
-        child: Scaffold(
-          backgroundColor: Palette.transparent,
-          body: _buildWallets(),
-          bottomNavigationBar: const CustomBottomNavbar(selectedIndex: 1),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.miniCenterDocked,
-          floatingActionButton: FloatingActionButton(
-            backgroundColor: Palette.accentColor,
-            child: const Icon(
-              Icons.add,
-              color: Palette.secondaryColor,
-              size: 25.0,
-            ),
-            onPressed: () {
-              Beamer.of(context).beamToNamed(Routes.createWalletForm);
-            },
-          ),
-        ));
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: _buildWallets(),
+        bottomNavigationBar: const CustomBottomNavbar(selectedIndex: 1),
+      ),
+    );
   }
 
   Widget _buildWallets() {
@@ -127,8 +116,8 @@ class _WalletItemState extends State<WalletItem> {
           color: Palette.primaryColor.withOpacity(0.2),
           borderRadius: BorderRadius.circular(16.0),
           border: Border.all(
-            width: 2.0,
-            color: Palette.accentColor.withOpacity(0.5),
+            width: 3.0,
+            color: Palette.secondaryColor.withOpacity(0.5),
           ),
           boxShadow: [
             BoxShadow(
@@ -155,9 +144,9 @@ class _WalletItemState extends State<WalletItem> {
                   Text(
                     widget.wallet.name,
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: Palette.white,
                       fontSize: 16.0,
-                      fontWeight: FontWeight.w300,
+                      fontWeight: FontWeight.w600,
                       letterSpacing: 0.2,
                     ),
                   ),

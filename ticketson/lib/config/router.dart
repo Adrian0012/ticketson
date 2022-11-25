@@ -1,6 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:ticketson/config/urls.dart';
+import 'package:ticketson/modules/account/location.dart';
 import 'package:ticketson/modules/tickets/location.dart';
 import 'package:ticketson/modules/wallets/forms/create_wallet/location.dart';
 import 'package:ticketson/modules/wallets/location.dart';
@@ -17,6 +18,7 @@ class AppRouter {
         DashboardLocation(),
         TicketLocation(),
         CreateWalletLocation(),
+        ViewAccountLocation(),
       ],
     ),
     // guards: [
@@ -40,6 +42,6 @@ class AppRouter {
     //     beamToNamed: (origin, target) => Routes.login,
     //   ),
     // ],
-    initialPath: Routes.dashboard,
+    initialPath: Routes.wallets,
   );
 }
