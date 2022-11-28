@@ -277,7 +277,7 @@ class CardListItem extends StatelessWidget {
         Expanded(
           flex: 2,
           child: Container(
-            height: 25,
+            height: 50,
             decoration: BoxDecoration(
               color: Colors.black,
               borderRadius: BorderRadius.circular(16),

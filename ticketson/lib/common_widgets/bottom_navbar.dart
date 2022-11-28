@@ -66,24 +66,33 @@
 //   }
 // }
 
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ticketson/config/themes/palette.dart';
+import 'package:ticketson/constants/navbar_enum.dart';
+
+import '../config/urls.dart';
 
 class CustomBottomNavbar extends StatefulWidget {
-  const CustomBottomNavbar({Key? key, required this.selectedIndex})
-      : super(key: key);
+  const CustomBottomNavbar({
+    Key? key,
+    required this.selectedIndex,
+    required this.navbarLocation,
+  }) : super(key: key);
   final int selectedIndex;
+  final String navbarLocation;
 
   @override
   State<CustomBottomNavbar> createState() => _CustomBottomNavbarState();
 }
 
 class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
-  var currentIndex = 0;
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    currentIndex = widget.selectedIndex;
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       margin: const EdgeInsets.all(20),
@@ -112,6 +121,19 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
               currentIndex = index;
               HapticFeedback.lightImpact();
             });
+            if (index == 0) {
+              Beamer.of(context).beamToNamed(Routes.wallets);
+            } else if (index == 1) {
+              if (widget.navbarLocation == NavbarStatus.wallets.name) {
+                Beamer.of(context).beamToNamed(Routes.createWalletForm);
+              } else if (widget.navbarLocation == NavbarStatus.tickets.name) {
+                // Beamer.of(context).beamToNamed(Routes.createTicketForm);
+              } else if (widget.navbarLocation == NavbarStatus.account.name) {
+                Beamer.of(context).beamToNamed(Routes.wallets);
+              }
+            } else if (index == 2) {
+              Beamer.of(context).beamToNamed(Routes.account);
+            }
           },
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
@@ -138,7 +160,9 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
                 width: screenWidth * .2125,
                 alignment: Alignment.center,
                 child: Icon(
-                  listOfIcons[index],
+                  widget.navbarLocation == NavbarStatus.account.name
+                      ? accountListOfIcons[index]
+                      : baseListOfIcons[index],
                   size: screenWidth * .076,
                   color: index == currentIndex ? Palette.white : Colors.black26,
                 ),
@@ -150,9 +174,15 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
     );
   }
 
-  List<IconData> listOfIcons = [
-    Icons.home_rounded,
+  List<IconData> baseListOfIcons = [
+    Icons.dashboard_rounded,
     Icons.add_box_rounded,
+    Icons.person_rounded,
+  ];
+
+  List<IconData> accountListOfIcons = [
+    Icons.dashboard_rounded,
+    Icons.home_rounded,
     Icons.person_rounded,
   ];
 }

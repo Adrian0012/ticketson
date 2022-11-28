@@ -1,9 +1,9 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ticketson/config/themes/custom_images.dart';
 import 'package:ticketson/config/themes/palette.dart';
 import 'package:ticketson/config/urls.dart';
+import 'package:ticketson/constants/navbar_enum.dart';
 import 'package:ticketson/modules/wallets/bloc/wallet_bloc.dart';
 import 'package:ticketson/modules/wallets/models/wallet.dart';
 import 'package:ticketson/common_widgets/bottom_navbar.dart';
@@ -38,7 +38,10 @@ class _WalletsScreenState extends State<WalletsScreen> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: _buildWallets(),
-        bottomNavigationBar: const CustomBottomNavbar(selectedIndex: 1),
+        bottomNavigationBar: CustomBottomNavbar(
+          selectedIndex: 1,
+          navbarLocation: NavbarStatus.wallets.name,
+        ),
       ),
     );
   }
