@@ -2,6 +2,7 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:ticketson/config/urls.dart';
 import 'package:ticketson/modules/account/location.dart';
+import 'package:ticketson/modules/auth/location.dart';
 import 'package:ticketson/modules/tickets/location.dart';
 import 'package:ticketson/modules/wallets/forms/create_wallet/location.dart';
 import 'package:ticketson/modules/wallets/location.dart';
@@ -15,6 +16,7 @@ class AppRouter {
     transitionDelegate: const NoAnimationTransitionDelegate(),
     locationBuilder: BeamerLocationBuilder(
       beamLocations: [
+        LoginLocation(),
         DashboardLocation(),
         TicketLocation(),
         CreateWalletLocation(),

@@ -160,7 +160,9 @@ class CreateWalletFormState extends State<CreateWalletForm> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Processing Data')),
                   );
+                  // ignore: avoid_print
                   print('===>${_walletNameController.text}<===');
+                  // ignore: avoid_print
                   print('===>$selectedValue<===');
                   Beamer.of(context).beamToNamed(Routes.wallets);
                 }

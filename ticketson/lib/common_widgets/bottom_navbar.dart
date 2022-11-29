@@ -122,7 +122,7 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
               HapticFeedback.lightImpact();
             });
             if (index == 0) {
-              Beamer.of(context).beamToNamed(Routes.wallets);
+              Beamer.of(context).beamToNamed(Routes.login);
             } else if (index == 1) {
               if (widget.navbarLocation == NavbarStatus.wallets.name) {
                 Beamer.of(context).beamToNamed(Routes.createWalletForm);
