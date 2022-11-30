@@ -44,6 +44,6 @@ class AppRouter {
     //     beamToNamed: (origin, target) => Routes.login,
     //   ),
     // ],
-    initialPath: Routes.wallets,
+    initialPath: Routes.login,
   );
 }

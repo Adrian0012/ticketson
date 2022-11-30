@@ -1,7 +1,11 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ticketson/config/themes/palette.dart';
 import 'dart:async';
 import 'dart:ui';
+
+import 'package:ticketson/config/urls.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -12,6 +16,9 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen>
     with TickerProviderStateMixin {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   late AnimationController controller1;
   late AnimationController controller2;
   late Animation<double> animation1;
@@ -94,130 +101,141 @@ class _LoginScreenState extends State<LoginScreen>
   void dispose() {
     controller1.dispose();
     controller2.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: const Color(0xff192028),
-      body: ScrollConfiguration(
-        behavior: MyBehavior(),
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: (() {
-            FocusScope.of(context).unfocus();
-          }),
-          child: SingleChildScrollView(
-            child: SizedBox(
-              height: size.height,
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: size.height * (animation2.value + .58),
-                    left: size.width * .21,
-                    child: CustomPaint(
-                      painter: MyPainter(50),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: const Alignment(-1, -1),
+          end: const Alignment(1.7, .5),
+          colors: Palette.loginGradient,
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Palette.transparent,
+        body: ScrollConfiguration(
+          behavior: MyBehavior(),
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: (() {
+              FocusScope.of(context).unfocus();
+            }),
+            child: SingleChildScrollView(
+              child: SizedBox(
+                height: size.height,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: size.height * (animation2.value + .58),
+                      left: size.width * .21,
+                      child: CustomPaint(
+                        painter: MyPainter(50),
+                      ),
                     ),
-                  ),
-                  Positioned(
-                    top: size.height * .98,
-                    left: size.width * .1,
-                    child: CustomPaint(
-                      painter: MyPainter(animation4.value - 30),
+                    Positioned(
+                      top: size.height * .98,
+                      left: size.width * .1,
+                      child: CustomPaint(
+                        painter: MyPainter(animation4.value - 30),
+                      ),
                     ),
-                  ),
-                  Positioned(
-                    top: size.height * .5,
-                    left: size.width * (animation2.value + .8),
-                    child: CustomPaint(
-                      painter: MyPainter(30),
+                    Positioned(
+                      top: size.height * .5,
+                      left: size.width * (animation2.value + .8),
+                      child: CustomPaint(
+                        painter: MyPainter(30),
+                      ),
                     ),
-                  ),
-                  Positioned(
-                    top: size.height * animation3.value,
-                    left: size.width * (animation1.value + .1),
-                    child: CustomPaint(
-                      painter: MyPainter(60),
+                    Positioned(
+                      top: size.height * animation3.value,
+                      left: size.width * (animation1.value + .1),
+                      child: CustomPaint(
+                        painter: MyPainter(60),
+                      ),
                     ),
-                  ),
-                  Positioned(
-                    top: size.height * .1,
-                    left: size.width * .8,
-                    child: CustomPaint(
-                      painter: MyPainter(animation4.value),
+                    Positioned(
+                      top: size.height * .1,
+                      left: size.width * .8,
+                      child: CustomPaint(
+                        painter: MyPainter(animation4.value),
+                      ),
                     ),
-                  ),
-                  Column(
-                    children: [
-                      Expanded(
-                        flex: 5,
-                        child: Padding(
-                          padding: EdgeInsets.only(top: size.height * .1),
-                          child: Text(
-                            'Tickets|ON',
-                            style: TextStyle(
-                              color: Colors.white.withOpacity(.7),
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1,
-                              wordSpacing: 4,
+                    Column(
+                      children: [
+                        Expanded(
+                          flex: 5,
+                          child: Padding(
+                            padding: EdgeInsets.only(top: size.height * .1),
+                            child: Text(
+                              'Tickets|ON',
+                              style: TextStyle(
+                                color: Palette.white.withOpacity(.7),
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 2,
+                                wordSpacing: 4,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 7,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            component1(
-                                Icons.email_outlined, 'Email...', false, true),
-                            component1(
-                                Icons.lock_outline, 'Password...', true, false),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                component2(
-                                  'LOGIN',
-                                  2.58,
-                                  () {
-                                    HapticFeedback.lightImpact();
-                                  },
-                                ),
-                                SizedBox(width: size.width / 20),
-                                component2(
-                                  'Forgotten password!',
-                                  2.58,
-                                  () {
-                                    HapticFeedback.lightImpact();
-                                  },
-                                ),
-                              ],
-                            ),
-                          ],
+                        Expanded(
+                          flex: 7,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              component1(Icons.email_outlined, 'Email...',
+                                  false, true),
+                              component1(Icons.lock_outline, 'Password...',
+                                  true, false),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  component2(
+                                    'LOGIN',
+                                    2.58,
+                                    () {
+                                      HapticFeedback.lightImpact();
+                                    },
+                                  ),
+                                  SizedBox(width: size.width / 20),
+                                  component2(
+                                    'Forgotten password!',
+                                    2.58,
+                                    () {
+                                      HapticFeedback.lightImpact();
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 6,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            component2(
-                              'Create a new Account',
-                              2,
-                              () {
-                                HapticFeedback.lightImpact();
-                              },
-                            ),
-                            SizedBox(height: size.height * .05),
-                          ],
+                        Expanded(
+                          flex: 6,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              component2(
+                                'Create a new Account',
+                                2,
+                                () {
+                                  HapticFeedback.lightImpact();
+                                },
+                              ),
+                              SizedBox(height: size.height * .05),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -242,25 +260,29 @@ class _LoginScreenState extends State<LoginScreen>
           alignment: Alignment.center,
           padding: EdgeInsets.only(right: size.width / 30),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(.05),
+            color: Palette.primaryColor.withOpacity(.6),
             borderRadius: BorderRadius.circular(15),
           ),
           child: TextField(
-            style: TextStyle(color: Colors.white.withOpacity(.8)),
-            cursorColor: Colors.white,
+            controller: isEmail ? _emailController : _passwordController,
+            style: TextStyle(color: Palette.white.withOpacity(.8)),
+            cursorColor: Palette.white,
             obscureText: isPassword,
             keyboardType:
                 isEmail ? TextInputType.emailAddress : TextInputType.text,
             decoration: InputDecoration(
               prefixIcon: Icon(
                 icon,
-                color: Colors.white.withOpacity(.7),
+                color: Palette.white.withOpacity(.7),
               ),
               border: InputBorder.none,
               hintMaxLines: 1,
               hintText: hintText,
-              hintStyle:
-                  TextStyle(fontSize: 14, color: Colors.white.withOpacity(.5)),
+              hintStyle: TextStyle(
+                fontSize: 14,
+                color: Colors.white.withOpacity(.5),
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
         ),
@@ -277,18 +299,27 @@ class _LoginScreenState extends State<LoginScreen>
         child: InkWell(
           highlightColor: Colors.transparent,
           splashColor: Colors.transparent,
-          onTap: voidCallback,
+          onTap: () {
+            // ignore: avoid_print
+            print(_emailController.text);
+            // ignore: avoid_print
+            print(_passwordController.text);
+            Beamer.of(context).beamToNamed(Routes.wallets);
+          },
           child: Container(
             height: size.width / 8,
             width: size.width / width,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(.05),
+              color: Palette.primaryColor.withOpacity(.6),
               borderRadius: BorderRadius.circular(15),
             ),
             child: Text(
               string,
-              style: TextStyle(color: Colors.white.withOpacity(.8)),
+              style: TextStyle(
+                color: Palette.white.withOpacity(.8),
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
         ),
@@ -305,8 +336,8 @@ class MyPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..shader = const LinearGradient(
-              colors: [Color(0xffFD5E3D), Color(0xffC43990)],
+      ..shader = LinearGradient(
+              colors: Palette.baseGradient,
               begin: Alignment.topLeft,
               end: Alignment.bottomRight)
           .createShader(Rect.fromCircle(

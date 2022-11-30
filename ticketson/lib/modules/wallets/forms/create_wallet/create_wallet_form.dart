@@ -144,14 +144,18 @@ class CreateWalletFormState extends State<CreateWalletForm> {
             ]),
             ElevatedButton(
               style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(Palette.primaryColor),
-                  minimumSize: MaterialStateProperty.all(const Size(200, 50)),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18.0),
-                          side:
-                              const BorderSide(color: Palette.primaryColor)))),
+                backgroundColor:
+                    MaterialStateProperty.all(Palette.primaryColor),
+                minimumSize: MaterialStateProperty.all(const Size(200, 50)),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: const BorderSide(
+                      color: Palette.primaryColor,
+                    ),
+                  ),
+                ),
+              ),
               onPressed: () {
                 // Validate returns true if the form is valid, or false otherwise.
                 if (_formKey.currentState!.validate()) {

@@ -7,6 +7,7 @@ class Palette {
   static const Color accentColor = Color(0xffff5778);
   static const Color secondaryColor = Color(0xff57ffde);
   static const Color white = Color(0xfff9f6ee);
+  static const Color black = Colors.black26;
 
   // text colors
   static const Color inputTextColor = Color(0xff007ee1);
@@ -25,5 +26,10 @@ class Palette {
   static List<Color> get baseGradient => [
         const Color(0xffffc976),
         const Color(0xffff5778),
+      ];
+
+  static List<Color> get loginGradient => [
+        const Color(0xff57ffde).withOpacity(1),
+        const Color(0xffffc976).withOpacity(1),
       ];
 }
