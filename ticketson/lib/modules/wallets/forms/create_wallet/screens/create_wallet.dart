@@ -1,6 +1,5 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
-import 'package:ticketson/config/themes/custom_images.dart';
 import 'package:ticketson/config/themes/palette.dart';
 import 'package:ticketson/modules/wallets/forms/create_wallet/create_wallet_form.dart';
 
@@ -15,10 +14,11 @@ class _CreateWalletStateScreen extends State<CreateWalletScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: CustomImages.background,
-          fit: BoxFit.cover,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: const Alignment(-1, -1),
+          end: const Alignment(1.7, .5),
+          colors: Palette.baseGradient,
         ),
       ),
       child: Scaffold(

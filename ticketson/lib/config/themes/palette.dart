@@ -22,14 +22,19 @@ class Palette {
   static const Color shimmerColor2 = Color(0xFFF4F4F4);
   static const Color shimmerColor3 = Color(0xFFEBEBF4);
 
-  // gradient navbar
+  // gradient
   static List<Color> get baseGradient => [
         const Color(0xffffc976),
         const Color(0xffff5778),
       ];
 
-  static List<Color> get loginGradient => [
+  static List<Color> get loginBackgroundGradient => [
         const Color(0xff57ffde).withOpacity(1),
         const Color(0xffffc976).withOpacity(1),
+      ];
+
+  static List<Color> get loginAnimationGradient => [
+        const Color(0xffffc976),
+        const Color(0xffff5778),
       ];
 }

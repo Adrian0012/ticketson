@@ -139,7 +139,7 @@ class _WalletItemState extends State<WalletItem> {
               Row(
                 children: [
                   const Icon(
-                    Icons.wallet,
+                    Icons.wallet_rounded,
                     size: 25.0,
                     color: Palette.primaryColor,
                   ),

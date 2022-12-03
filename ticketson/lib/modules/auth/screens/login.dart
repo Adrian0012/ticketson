@@ -1,11 +1,9 @@
-import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ticketson/modules/auth/widgets/custom_button.dart';
 import 'package:ticketson/config/themes/palette.dart';
 import 'dart:async';
 import 'dart:ui';
-
-import 'package:ticketson/config/urls.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -114,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen>
         gradient: LinearGradient(
           begin: const Alignment(-1, -1),
           end: const Alignment(1.7, .5),
-          colors: Palette.loginGradient,
+          colors: Palette.loginBackgroundGradient,
         ),
       ),
       child: Scaffold(
@@ -196,18 +194,20 @@ class _LoginScreenState extends State<LoginScreen>
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  component2(
-                                    'LOGIN',
-                                    2.58,
-                                    () {
+                                  CustomButton(
+                                    buttonText: 'LOGIN',
+                                    width: 2.58,
+                                    voidCallback: () {
                                       HapticFeedback.lightImpact();
                                     },
+                                    email: _emailController.text,
+                                    password: _passwordController.text,
                                   ),
                                   SizedBox(width: size.width / 20),
-                                  component2(
-                                    'Forgotten password!',
-                                    2.58,
-                                    () {
+                                  CustomButton(
+                                    buttonText: 'Forgotten password!',
+                                    width: 2.58,
+                                    voidCallback: () {
                                       HapticFeedback.lightImpact();
                                     },
                                   ),
@@ -221,10 +221,10 @@ class _LoginScreenState extends State<LoginScreen>
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              component2(
-                                'Create a new Account',
-                                2,
-                                () {
+                              CustomButton(
+                                buttonText: 'Create a new Account',
+                                width: 2,
+                                voidCallback: () {
                                   HapticFeedback.lightImpact();
                                 },
                               ),
@@ -263,7 +263,7 @@ class _LoginScreenState extends State<LoginScreen>
             color: Palette.primaryColor.withOpacity(.6),
             borderRadius: BorderRadius.circular(15),
           ),
-          child: TextField(
+          child: TextFormField(
             controller: isEmail ? _emailController : _passwordController,
             style: TextStyle(color: Palette.white.withOpacity(.8)),
             cursorColor: Palette.white,
@@ -289,43 +289,6 @@ class _LoginScreenState extends State<LoginScreen>
       ),
     );
   }
-
-  Widget component2(String string, double width, VoidCallback voidCallback) {
-    Size size = MediaQuery.of(context).size;
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(15),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
-        child: InkWell(
-          highlightColor: Colors.transparent,
-          splashColor: Colors.transparent,
-          onTap: () {
-            // ignore: avoid_print
-            print(_emailController.text);
-            // ignore: avoid_print
-            print(_passwordController.text);
-            Beamer.of(context).beamToNamed(Routes.wallets);
-          },
-          child: Container(
-            height: size.width / 8,
-            width: size.width / width,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Palette.primaryColor.withOpacity(.6),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Text(
-              string,
-              style: TextStyle(
-                color: Palette.white.withOpacity(.8),
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 }
 
 class MyPainter extends CustomPainter {
@@ -337,7 +300,7 @@ class MyPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
       ..shader = LinearGradient(
-              colors: Palette.baseGradient,
+              colors: Palette.loginAnimationGradient,
               begin: Alignment.topLeft,
               end: Alignment.bottomRight)
           .createShader(Rect.fromCircle(
