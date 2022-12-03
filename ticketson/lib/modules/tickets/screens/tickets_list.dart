@@ -152,6 +152,7 @@ class TicketItem extends StatefulWidget {
 class _TicketItemState extends State<TicketItem> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -207,14 +208,14 @@ class _TicketItemState extends State<TicketItem> {
         Expanded(
           flex: 2,
           child: Lottie.asset(
-            height: 50,
+            height: size.height / 15,
             fit: BoxFit.fill,
             widget.ticket.status == 'pending'
                 ? 'assets/lottie/pending.json'
                 : widget.ticket.status == 'win'
                     ? 'assets/lottie/winner.json'
                     : widget.ticket.status == 'lost'
-                        ? 'assets/lottie/lost.json'
+                        ? 'assets/lottie/fail.json'
                         : '',
             controller: widget.animationController,
             onLoaded: (composition) {

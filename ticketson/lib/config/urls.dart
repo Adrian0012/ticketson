@@ -9,6 +9,8 @@ class Routes {
   static const wallets = '/wallets';
   static const tickets = '/wallet/tickets';
   static const account = '/account';
+  static const dashboard = '/dashboard';
   // FORMS
   static const createWalletForm = '/createWallet';
+  static const createTicketForm = '/createTicket';
 }

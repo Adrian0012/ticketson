@@ -1,7 +1,8 @@
 enum NavbarStatus {
   wallets,
   account,
-  tickets;
+  tickets,
+  dashboard;
 
   String get location => name;
 }

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:ticketson/config/urls.dart';
 import 'package:ticketson/modules/account/location.dart';
 import 'package:ticketson/modules/auth/location.dart';
+import 'package:ticketson/modules/dashboard/location.dart';
+import 'package:ticketson/modules/tickets/forms/create_ticket/location.dart';
 import 'package:ticketson/modules/tickets/location.dart';
 import 'package:ticketson/modules/wallets/forms/create_wallet/location.dart';
 import 'package:ticketson/modules/wallets/location.dart';
@@ -18,8 +20,10 @@ class AppRouter {
       beamLocations: [
         LoginLocation(),
         DashboardLocation(),
+        WalletLocation(),
         TicketLocation(),
         CreateWalletLocation(),
+        CreateTicketLocation(),
         ViewAccountLocation(),
       ],
     ),

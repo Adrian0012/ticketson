@@ -122,13 +122,15 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
               HapticFeedback.lightImpact();
             });
             if (index == 0) {
-              Beamer.of(context).beamToNamed(Routes.login);
+              Beamer.of(context).beamToNamed(Routes.dashboard);
             } else if (index == 1) {
               if (widget.navbarLocation == NavbarStatus.wallets.name) {
                 Beamer.of(context).beamToNamed(Routes.createWalletForm);
               } else if (widget.navbarLocation == NavbarStatus.tickets.name) {
-                // Beamer.of(context).beamToNamed(Routes.createTicketForm);
+                Beamer.of(context).beamToNamed(Routes.createTicketForm);
               } else if (widget.navbarLocation == NavbarStatus.account.name) {
+                Beamer.of(context).beamToNamed(Routes.wallets);
+              } else if (widget.navbarLocation == NavbarStatus.dashboard.name) {
                 Beamer.of(context).beamToNamed(Routes.wallets);
               }
             } else if (index == 2) {
@@ -162,7 +164,9 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
                 child: Icon(
                   widget.navbarLocation == NavbarStatus.account.name
                       ? accountListOfIcons[index]
-                      : baseListOfIcons[index],
+                      : widget.navbarLocation == NavbarStatus.dashboard.name
+                          ? dashboardListOfIcons[index]
+                          : baseListOfIcons[index],
                   size: screenWidth * .076,
                   color: index == currentIndex ? Palette.white : Colors.black26,
                 ),
@@ -181,6 +185,12 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
   ];
 
   List<IconData> accountListOfIcons = [
+    Icons.dashboard_rounded,
+    Icons.home_rounded,
+    Icons.person_rounded,
+  ];
+
+  List<IconData> dashboardListOfIcons = [
     Icons.dashboard_rounded,
     Icons.home_rounded,
     Icons.person_rounded,
