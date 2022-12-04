@@ -1,7 +1,9 @@
 import 'dart:ui';
 
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:ticketson/config/themes/palette.dart';
+import 'package:ticketson/config/urls.dart';
 
 class CustomButton extends StatefulWidget {
   const CustomButton({
@@ -9,10 +11,12 @@ class CustomButton extends StatefulWidget {
     required this.buttonText,
     required this.width,
     required this.voidCallback,
+    this.location,
   });
   final String buttonText;
   final double width;
   final VoidCallback voidCallback;
+  final String? location;
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -29,7 +33,11 @@ class _CustomButtonState extends State<CustomButton> {
         child: InkWell(
           highlightColor: Colors.transparent,
           splashColor: Colors.transparent,
-          onTap: () {},
+          onTap: () {
+            if (widget.location == 'logout') {
+              Beamer.of(context).beamToNamed(Routes.login);
+            }
+          },
           child: Container(
             height: size.width / 8,
             width: size.width / widget.width,

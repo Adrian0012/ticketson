@@ -87,6 +87,17 @@ class _ViewAccountStateScreen extends State<ViewAccountScreen>
                           height: 20.0,
                         ),
                         CustomButton(
+                          buttonText: 'Logout',
+                          width: 2.58,
+                          voidCallback: () {
+                            HapticFeedback.lightImpact();
+                          },
+                          location: 'logout',
+                        ),
+                        const Divider(
+                          height: 20.0,
+                        ),
+                        CustomButton(
                             buttonText: 'Delete Account',
                             width: 2.58,
                             voidCallback: () {
