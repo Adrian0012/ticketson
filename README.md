@@ -1,6 +1,7 @@
 # ticketson
-development => local
 
-qa => QA
+Basic project used to experiment with various elements:
 
-main => PROD
+* Gradients
+* Animations
+* Custom Paint
