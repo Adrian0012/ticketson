@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ticketson/common_widgets/bottom_navbar.dart';
 import 'package:ticketson/config/themes/palette.dart';
 import 'package:ticketson/constants/navbar_enum.dart';
 import 'package:lottie/lottie.dart';
+import 'package:ticketson/modules/account/widgets/custom_button.dart';
 
 class ViewAccountScreen extends StatefulWidget {
   const ViewAccountScreen({super.key});
@@ -75,63 +77,21 @@ class _ViewAccountStateScreen extends State<ViewAccountScreen>
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Palette.primaryColor),
-                            minimumSize:
-                                MaterialStateProperty.all(const Size(200, 50)),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                                side: const BorderSide(
-                                  color: Palette.secondaryColor,
-                                ),
-                              ),
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            'Edit Profile',
-                            style: TextStyle(
-                              color: Palette.accentColor.withOpacity(1),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 0.2,
-                            ),
-                          ),
-                        ),
+                        CustomButton(
+                            buttonText: 'Edit Profile',
+                            width: 2.58,
+                            voidCallback: () {
+                              HapticFeedback.lightImpact();
+                            }),
                         const Divider(
                           height: 20.0,
                         ),
-                        ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Palette.primaryColor),
-                            minimumSize:
-                                MaterialStateProperty.all(const Size(200, 50)),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                                side: const BorderSide(
-                                  color: Palette.secondaryColor,
-                                ),
-                              ),
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            'Delete Account',
-                            style: TextStyle(
-                              color: Palette.accentColor.withOpacity(1),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 0.2,
-                            ),
-                          ),
-                        ),
+                        CustomButton(
+                            buttonText: 'Delete Account',
+                            width: 2.58,
+                            voidCallback: () {
+                              HapticFeedback.lightImpact();
+                            }),
                       ],
                     ),
                   ),

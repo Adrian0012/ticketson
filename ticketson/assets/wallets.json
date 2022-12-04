@@ -29,8 +29,29 @@
       "createdAt": "2022-11-01 00:00:32.370"
     },
     {
-      "uid":"fc923114-6838-43f2-9f34-e52b6547c673",
+      "uid":"50049b76-5ec1-4c42-b9ff-c0c96b9e9e41",
       "name": "Wallet5",
+      "walletType": "Type1",
+      "ticketCount": 0,
+      "createdAt": "2022-11-01 00:00:32.370"
+    },
+    {
+      "uid":"50049b76-5ec1-4c42-b9ff-c0c96b9e9e42",
+      "name": "Wallet6",
+      "walletType": "Type1",
+      "ticketCount": 0,
+      "createdAt": "2022-11-01 00:00:32.370"
+    },
+    {
+      "uid":"50049b76-5ec1-4c42-b9ff-c0c96b9e9e43",
+      "name": "Wallet7",
+      "walletType": "Type1",
+      "ticketCount": 0,
+      "createdAt": "2022-11-01 00:00:32.370"
+    },
+    {
+      "uid":"fc923114-6838-43f2-9f34-e52b6547c673",
+      "name": "Wallet8",
       "walletType": "Type1",
       "ticketCount": 12,
       "createdAt": "2022-11-01 00:00:32.370"

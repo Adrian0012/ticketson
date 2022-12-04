@@ -58,7 +58,7 @@ class _TicketsScreenState extends State<TicketsScreen>
                 Icons.arrow_back_rounded,
                 size: screenWidth * .076,
               ),
-              color: Palette.secondaryColor,
+              color: Palette.white,
               onPressed: () {
                 Beamer.of(context).beamBack();
               },

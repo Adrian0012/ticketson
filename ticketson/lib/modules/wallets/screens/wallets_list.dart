@@ -78,22 +78,15 @@ class _WalletsScreenState extends State<WalletsScreen> {
 }
 
 Widget _buildWalletItems(BuildContext context, List<Wallet> model) {
-  return Column(
-    children: <Widget>[
-      Expanded(
-        child: ListView.builder(
-            physics: const AlwaysScrollableScrollPhysics(),
-            itemCount: model.length,
-            itemBuilder: (BuildContext content, int index) {
-              final Wallet wallet = model[index];
-              return Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: WalletItem(wallet: wallet),
-              );
-            }),
-      ),
-    ],
-  );
+  return ListView.builder(
+      itemCount: model.length,
+      itemBuilder: (BuildContext content, int index) {
+        final Wallet wallet = model[index];
+        return Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: WalletItem(wallet: wallet),
+        );
+      });
 }
 
 class WalletItem extends StatefulWidget {
@@ -110,23 +103,15 @@ class WalletItem extends StatefulWidget {
 class _WalletItemState extends State<WalletItem> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: (() {
         Beamer.of(context)
             .beamToNamed(Routes.tickets, data: {'wallet': widget.wallet});
       }),
       child: Container(
-        width: size.width,
-        height: size.height / 5.5,
+        height: 180,
         decoration: BoxDecoration(
           color: Palette.primaryColor.withOpacity(0.2),
-
-          // borderRadius: BorderRadius.circular(16.0),
-          // border: Border.all(
-          //   width: 1.0,
-          //   color: Palette.secondaryColor.withOpacity(0.5),
-          // ),
           boxShadow: [
             BoxShadow(
               blurRadius: 16,
@@ -136,25 +121,7 @@ class _WalletItemState extends State<WalletItem> {
           ],
         ),
         child: CustomPaint(
-          painter: RPSCustomPainter(),
-          // child: Container(
-          //   decoration: BoxDecoration(
-          //     color: Palette.primaryColor.withOpacity(0.2),
-          //     // borderRadius: BorderRadius.circular(16.0),
-          //     border: Border.all(
-          //       width: 3.0,
-          //       color: Palette.secondaryColor.withOpacity(0.5),
-          //     ),
-          //     boxShadow: [
-          //       BoxShadow(
-          //         blurRadius: 16,
-          //         spreadRadius: 16,
-          //         color: Colors.black.withOpacity(0.1),
-          //       ),
-          //     ],
-          //   ),
-          //   width: size.width,
-          //   height: size.height / 5.5,
+          painter: WalletCustomPainter(),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -207,7 +174,7 @@ class _WalletItemState extends State<WalletItem> {
   }
 }
 
-class RPSCustomPainter extends CustomPainter {
+class WalletCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint0 = Paint()
