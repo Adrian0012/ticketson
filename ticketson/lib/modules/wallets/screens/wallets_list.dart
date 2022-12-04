@@ -82,6 +82,7 @@ Widget _buildWalletItems(BuildContext context, List<Wallet> model) {
     children: <Widget>[
       Expanded(
         child: ListView.builder(
+            physics: const AlwaysScrollableScrollPhysics(),
             itemCount: model.length,
             itemBuilder: (BuildContext content, int index) {
               final Wallet wallet = model[index];
